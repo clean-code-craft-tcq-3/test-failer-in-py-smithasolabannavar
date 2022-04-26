@@ -4,8 +4,22 @@ def print_color_map():
     minor_colors = ["Blue", "Orange", "Green", "Brown", "Slate"]
     for i, major in enumerate(major_colors):
         for j, minor in enumerate(minor_colors):
+            assert(get_pair_number_from_color(major, minor) == i * 5 + j)
             print(f'{i * 5 + j} | {major} | {minor}')
     return len(major_colors) * len(minor_colors)
+
+def get_pair_number_from_color(major_color, minor_color):
+    major_colors = ["White", "Red", "Black", "Yellow", "Violet"]
+    minor_colors = ["Blue", "Orange", "Green", "Brown", "Slate"]
+    try:
+        major_index = major_colors.index(major_color)
+    except ValueError:
+        raise Exception('Major index out of range')
+    try:
+        minor_index = minor_colors.index(minor_color)
+    except ValueError:
+        raise Exception('Minor index out of range')
+    return major_index * len(minor_colors) + minor_index + 1
 
 
 result = print_color_map()
